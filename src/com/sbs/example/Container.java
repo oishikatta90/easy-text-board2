@@ -20,10 +20,10 @@ public class Container {
 	static {
 		scanner = new Scanner(System.in);
 		session = new Session();
-		memberService = new MemberService();
 		memberDao = new MemberDao();
-		articleService = new ArticleService();
 		articleDao = new ArticleDao();
+		memberService = new MemberService();
+		articleService = new ArticleService();
 	}
 
 }
