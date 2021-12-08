@@ -9,9 +9,9 @@ import com.sbs.example.session.Session;
 public class Container {
 
 	public static Scanner scanner;
+	public static Session session;
 	public static MemberDao memberDao;
 	public static MemberService memberService;
-	public static Session session;
 	
 	static {
 		scanner = new Scanner(System.in);

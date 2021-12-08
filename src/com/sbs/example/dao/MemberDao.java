@@ -12,6 +12,27 @@ public class MemberDao {
 	public MemberDao() {
 		members = new ArrayList<>();
 		lastId = 0;
+		
+		makeTestData();
+	}
+
+	private void makeTestData() {
+		Member member = new Member();
+		member.id = 1;
+		member.loginId = "admin";
+		member.loginPw = "1234";
+		member.name = "어드민";
+		
+		members.add(member);
+		
+		member = new Member();
+		member.id = 2;
+		member.loginId = "admin2";
+		member.loginPw = "1234";
+		member.name = "어드민2";
+		
+		members.add(member);
+		
 	}
 
 	public int join(String loginId, String loginPw, String name) {
@@ -41,4 +62,12 @@ public class MemberDao {
 		return null;
 	}
 
+	public Member getMemberById(int id) {
+		for (Member member : members) {
+			if (member.id == id) {
+				return member;
+			}
+		}
+		return null;
+	}
 }
