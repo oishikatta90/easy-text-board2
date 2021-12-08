@@ -37,10 +37,13 @@ public class ArticleDao {
 		
 		lastId = article.id;
 		
-		//임시
-		System.out.println("articles : " + articles);
 		return article.id;
 		
+	}
+
+
+	public List<Article> getForPrintArticles() {
+		return articles;
 	}
 
 }

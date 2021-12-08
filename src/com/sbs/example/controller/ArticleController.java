@@ -1,8 +1,10 @@
 package com.sbs.example.controller;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.sbs.example.Container;
+import com.sbs.example.dto.Article;
 import com.sbs.example.service.ArticleService;
 
 public class ArticleController {
@@ -10,12 +12,21 @@ public class ArticleController {
 	private ArticleService articleService;
 	
 	public ArticleController() {
-		articleService = Container.articleService;
+		articleService = new ArticleService();
 	}
 
 	public void doCommand(String cmd) {
 		if (cmd.equals("article add")) {
 			add(cmd);
+		} else if (cmd.equals("article list")) {
+			list(cmd);
+		}
+	}
+
+	private void list(String cmd) {
+		List<Article> articles = articleService.getForPrintArticles();
+		for (Article article : articles) {
+			System.out.printf("게시물번호 : %d / 회원번호 : %d / 게시물 제목 : %s / 게시물 내용 : %s\n",article.id, article.memberId, article.title, article.body);
 		}
 	}
 
