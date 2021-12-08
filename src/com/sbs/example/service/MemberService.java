@@ -9,7 +9,7 @@ public class MemberService {
 	private MemberDao memberDao;
 	
 	public MemberService() {
-		memberDao = Container.memberDao;
+		memberDao = new MemberDao();
 	}
 
 	public int join(String loginId, String loginPw, String name) {
@@ -25,7 +25,7 @@ public class MemberService {
 		return true;
 	}
 
-	public Member getMemberByLoginId(String loginId) {
+	public Member getMemberByLoginId(String loginId){
 		return memberDao.getMemberByLoginId(loginId);
 	}
 

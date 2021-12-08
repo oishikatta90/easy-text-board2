@@ -17,22 +17,8 @@ public class MemberDao {
 	}
 
 	private void makeTestData() {
-		Member member = new Member();
-		member.id = 1;
-		member.loginId = "admin";
-		member.loginPw = "1234";
-		member.name = "어드민";
-		
-		members.add(member);
-		
-		member = new Member();
-		member.id = 2;
-		member.loginId = "admin2";
-		member.loginPw = "1234";
-		member.name = "어드민2";
-		
-		members.add(member);
-		
+			join("admin1", "1234", "어드민1");
+			join("admin2", "1234", "어드민2");
 	}
 
 	public int join(String loginId, String loginPw, String name) {

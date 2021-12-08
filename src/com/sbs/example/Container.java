@@ -2,7 +2,9 @@ package com.sbs.example;
 
 import java.util.Scanner;
 
+import com.sbs.example.dao.ArticleDao;
 import com.sbs.example.dao.MemberDao;
+import com.sbs.example.service.ArticleService;
 import com.sbs.example.service.MemberService;
 import com.sbs.example.session.Session;
 
@@ -10,14 +12,18 @@ public class Container {
 
 	public static Scanner scanner;
 	public static Session session;
-	public static MemberDao memberDao;
 	public static MemberService memberService;
+	public static MemberDao memberDao;
+	public static ArticleService articleService;
+	public static ArticleDao articleDao;
 	
 	static {
 		scanner = new Scanner(System.in);
-		memberDao = new MemberDao();
-		memberService = new MemberService();
 		session = new Session();
+		memberService = new MemberService();
+		memberDao = new MemberDao();
+		articleService = new ArticleService();
+		articleDao = new ArticleDao();
 	}
 
 }
