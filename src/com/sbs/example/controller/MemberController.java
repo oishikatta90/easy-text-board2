@@ -7,7 +7,7 @@ import com.sbs.example.dto.Member;
 import com.sbs.example.service.MemberService;
 import com.sbs.example.session.Session;
 
-public class MemberController {
+public class MemberController extends Controller{
 
 	private MemberService memberService;
 
