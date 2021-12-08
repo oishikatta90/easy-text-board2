@@ -4,15 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sbs.example.dto.Article;
+import com.sbs.example.dto.Board;
 import com.sbs.example.dto.Member;
 
 public class ArticleDao {
 	private List<Article>articles;
 	private int lastId;
+	private int lastBoardId;
+	private List<Board> boards;
 	
 	public ArticleDao() {
 		articles = new ArrayList<>();
 		lastId = 0;
+		
+		boards = new ArrayList<>();
+		lastBoardId = 0;
 		makeTestData();
 	}
 	
@@ -46,4 +52,15 @@ public class ArticleDao {
 		return articles;
 	}
 
+
+	public int makeBoard(String name) {
+		Board board = new Board();
+		board.id = lastBoardId + 1;
+		board.name = name;
+		boards.add(board);
+		
+		lastBoardId = board.id;
+		
+		return board.id;
+	}
 }

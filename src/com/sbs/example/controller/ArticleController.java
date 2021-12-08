@@ -9,11 +9,11 @@ import com.sbs.example.dto.Member;
 import com.sbs.example.service.ArticleService;
 import com.sbs.example.service.MemberService;
 
-public class ArticleController extends Controller{
+public class ArticleController extends Controller {
 
 	private ArticleService articleService;
 	private MemberService memberService;
-	
+
 	public ArticleController() {
 		articleService = Container.articleService;
 		memberService = Container.memberService;
@@ -24,15 +24,30 @@ public class ArticleController extends Controller{
 			add(cmd);
 		} else if (cmd.equals("article list")) {
 			list(cmd);
+		} else if (cmd.equals("article makeBoard")) {
+			makeBoard(cmd);
 		}
+	}
+
+	private void makeBoard(String cmd) {
+		Scanner scan = Container.scanner;
+		String name;
+
+		System.out.print("게시판 이름 : ");
+		name = scan.nextLine();
+		
+		int id = articleService.makeBoard(name);
+		
+		System.out.printf("공지사항(%d) 게시판이 생성되었습니다.", id);
 	}
 
 	private void list(String cmd) {
 		List<Article> articles = articleService.getForPrintArticles();
-		
+
 		for (Article article : articles) {
 			Member member = memberService.getMemberById(article.memberId);
-			System.out.printf("게시물번호 : %d / 회원이름 : %s / 게시물 제목 : %s / 게시물 내용 : %s\n",article.id, member.name, article.title, article.body);
+			System.out.printf("게시물번호 : %d / 회원이름 : %s / 게시물 제목 : %s / 게시물 내용 : %s\n", article.id, member.name,
+					article.title, article.body);
 		}
 	}
 
@@ -51,7 +66,7 @@ public class ArticleController extends Controller{
 		System.out.print("내용: ");
 		body = scan.nextLine();
 
-		int id = articleService.write(Container.session.loginedMemberId,title, body);
+		int id = articleService.write(Container.session.loginedMemberId, title, body);
 		System.out.printf("%d번 글 생성되었습니다.\n", id);
 	}
 
