@@ -16,4 +16,13 @@ public class MemberService {
 		return memberDao.join(loginId, loginPw, name);
 	}
 
+	public boolean isJoinableLoginId(String loginId) {
+		Member member = memberDao.getMemberByLoginId(loginId);
+		
+		if (member != null) {
+			return false;
+		}
+		return true;
+	}
+
 }
