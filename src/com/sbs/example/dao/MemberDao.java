@@ -18,7 +18,7 @@ public class MemberDao {
 
 	private void makeTestData() {
 			join("admin1", "1234", "어드민1");
-			join("admin2", "1234", "어드민2");
+			join("oishikatta", "1234", "우마이!");
 	}
 
 	public int join(String loginId, String loginPw, String name) {

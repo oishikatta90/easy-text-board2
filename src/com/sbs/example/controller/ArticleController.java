@@ -5,14 +5,18 @@ import java.util.Scanner;
 
 import com.sbs.example.Container;
 import com.sbs.example.dto.Article;
+import com.sbs.example.dto.Member;
 import com.sbs.example.service.ArticleService;
+import com.sbs.example.service.MemberService;
 
 public class ArticleController {
 
 	private ArticleService articleService;
+	private MemberService memberService;
 	
 	public ArticleController() {
 		articleService = new ArticleService();
+		memberService = new MemberService();
 	}
 
 	public void doCommand(String cmd) {
@@ -25,8 +29,10 @@ public class ArticleController {
 
 	private void list(String cmd) {
 		List<Article> articles = articleService.getForPrintArticles();
+		
 		for (Article article : articles) {
-			System.out.printf("게시물번호 : %d / 회원번호 : %d / 게시물 제목 : %s / 게시물 내용 : %s\n",article.id, article.memberId, article.title, article.body);
+			Member member = memberService.getMemberById(article.memberId);
+			System.out.printf("게시물번호 : %d / 회원이름 : %s / 게시물 제목 : %s / 게시물 내용 : %s\n",article.id, member.name, article.title, article.body);
 		}
 	}
 
