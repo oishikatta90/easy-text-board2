@@ -12,13 +12,6 @@ public class MemberDao {
 	public MemberDao() {
 		members = new ArrayList<>();
 		lastId = 0;
-		
-		makeTestData();
-	}
-
-	private void makeTestData() {
-			join("admin1", "1234", "어드민1");
-			join("oishikatta", "1234", "우마이!");
 	}
 
 	public int join(String loginId, String loginPw, String name) {
