@@ -1,6 +1,7 @@
 package com.sbs.example.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.sbs.example.Container;
@@ -45,6 +46,9 @@ public class ArticleDao {
 				newArticles.add(article);
 			}
 		}
+		
+		Collections.reverse(newArticles);
+		
 		return newArticles;
 	}
 
