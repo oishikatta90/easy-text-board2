@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.sbs.example.Container;
 import com.sbs.example.dto.Article;
+import com.sbs.example.dto.Board;
 import com.sbs.example.dto.Member;
 import com.sbs.example.service.ArticleService;
 import com.sbs.example.service.MemberService;
@@ -26,7 +27,23 @@ public class ArticleController extends Controller {
 			list(cmd);
 		} else if (cmd.equals("article makeBoard")) {
 			makeBoard(cmd);
+		} else if (cmd.startsWith("article selectBoard")) {
+			selectBoard(cmd);
 		}
+	}
+
+	private void selectBoard(String cmd) {
+		int boardId = Integer.parseInt(cmd.split(" ")[2]);
+		
+		Board board = articleService.getBoardById(boardId);
+		
+		if (board == null) {
+			System.out.println("존재하지 않는 게시판 번호입니다.");
+			return;
+		}
+		
+		System.out.printf("%s 게시판으로 변경합니다.\n", board.name);
+		Container.session.selectedBoardId = board.id;
 	}
 
 	private void makeBoard(String cmd) {
@@ -38,7 +55,7 @@ public class ArticleController extends Controller {
 		
 		int boardId = articleService.makeBoard(name);
 		
-		System.out.printf("공지사항(%d) 게시판이 생성되었습니다.", boardId);
+		System.out.printf("%s(%d) 게시판이 생성되었습니다.",name, boardId);
 	}
 
 	private void list(String cmd) {
