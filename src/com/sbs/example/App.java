@@ -23,7 +23,7 @@ public class App {
 
 	private void init() {
 		ArticleService articleService = Container.articleService;
-		Container.session.selectedBoardId = articleService.getFirstBoardId();
+		Container.session.selectedBoardId = articleService.getDefaultBoardId();
 
 	}
 
@@ -36,6 +36,7 @@ public class App {
 		// 공지사항 게시판 생성
 		ArticleService articleService = Container.articleService;
 		int noticeBoardId = articleService.makeBoard("공지사항");
+		int freeBoardId = articleService.makeBoard("자유");
 		// 1번 회원이 공지사항 게시물 5개 작성
 		// 2번 회원이 공지사항 게시물 5개 작성
 		for (int i = 1; i <= 5; i++) {
@@ -43,6 +44,8 @@ public class App {
 			articleService.write(noticeBoardId, secondMemberId, "원피스" + i + "권", "모험편" + i + "장");
 
 		}
+		
+		
 
 	}
 
@@ -59,7 +62,9 @@ public class App {
 			}
 
 			Controller controller = getControllerByCmd(cmd);
-			controller.doCommand(cmd);
+			if (controller != null) {
+				controller.doCommand(cmd);
+			}
 		}
 		scanner.close();
 	}

@@ -59,8 +59,11 @@ public class ArticleController extends Controller {
 	}
 
 	private void list(String cmd) {
-		List<Article> articles = articleService.getForPrintArticles();
-
+		int boardId = Container.session.selectedBoardId;
+		Board board = articleService.getBoardById(boardId);
+		List<Article> articles = articleService.getForPrintArticles(boardId);
+		
+		System.out.printf("== %s 게시판 글 리스트 == \n", board.name);
 		for (Article article : articles) {
 			Member member = memberService.getMemberById(article.memberId);
 			System.out.printf("게시물번호 : %d / 회원이름 : %s / 게시물 제목 : %s / 게시물 내용 : %s\n", article.id, member.name,
